@@ -56,29 +56,29 @@ def compare(allp, specific, IDlist = None):
 	:return:
 	"""
 	name = specific
-	hemo = 'analysis_results/simpleDSSPv2_{}_desc.txt'.format(name)
+	group = 'analysis_results/simpleDSSPv2_{}_desc.txt'.format(name)
 
-	hemo = procFile(hemo)
+	group = procFile(group)
 	allp = procFile(allp)
-	allp = link(hemo, allp)
+	allp = link(group, allp)
 	
-	h1 = [float(i[0]) for i in hemo]
+	h1 = [float(i[0]) for i in group]
 	h2 = [float(i[0]) for i in allp]
 
 	plt.title("specific vs general trained normalized scores")
 	plt.plot(h2, h1, 'y+')
 
 	if 1:
-		#[plt.plot(h2[i], h1[i], 'ro')for i in range(len(hemo)) if 'ubiquitin'.lower() in ''.join(hemo[i]).lower()]
-		[plt.plot(h2[i], h1[i], 'ko', ms=3.8)for i in range(len(hemo)) if 'hemoglobin' in ''.join(hemo[i]).lower()]
+		#[plt.plot(h2[i], h1[i], 'ro')for i in range(len(group)) if 'ubiquitin'.lower() in ''.join(group[i]).lower()]
+		[plt.plot(h2[i], h1[i], 'ko', ms=3.8)for i in range(len(group)) if 'hemoglobin' in ''.join(group[i]).lower()]
 		
 		if IDlist is None:	
-			[plt.plot(h2[i], h1[i], 'bo', ms=3.8)for i in range(len(hemo)) if name.lower() in ''.join(hemo[i]).lower()]
+			[plt.plot(h2[i], h1[i], 'bo', ms=3.8)for i in range(len(group)) if name.lower() in ''.join(group[i]).lower()]
 		else:
 			IDs = open(IDlist,'r').read().split('\n')[:-1]
-			[plt.plot(h2[i], h1[i], 'bo', ms=3.8)for i in range(len(hemo)) if ''.join(hemo[i][1]) in IDs]
+			[plt.plot(h2[i], h1[i], 'bo', ms=3.8)for i in range(len(group)) if ''.join(group[i][1]) in IDs]
 		
-	[plt.plot(h2[i], h1[i], 'ro', ms=3.8)for i in range(len(hemo)) if 'antibody'.lower() in ''.join(hemo[i]).lower()]
+	# [plt.plot(h2[i], h1[i], 'ro', ms=3.8)for i in range(len(group)) if 'antibody'.lower() in ''.join(group[i]).lower()]
 
 	#plt.plot(h2,h2,'r')
 	

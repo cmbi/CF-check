@@ -100,9 +100,8 @@ class scoreClass:
 
         entryNames, entryScores, entryHEADS, unused_percentage = self.calcScores()
         bin2use = len(entryScores) / 10
-        print("TOTAL PROTEINS: ", len(entryScores)) #TODO: remove (ad hoc fix)
+        print("TOTAL PROTEINS: ", len(entryScores))
 
-        print(bin2use)
 
         weights = np.ones_like(entryScores) / float(len(entryScores))
         plt.hist(entryScores, bin2use, density=True, color='y', weights=weights)
@@ -123,7 +122,7 @@ class scoreClass:
         fig.savefig('Histogram.png', dpi=300)
         plt.show()
 
-        str(raw_input('Press any key to continue'))
+        str(raw_input('Press enter key to continue'))
         plt.close()
 
         return entryNames, entryScores, entryHEADS, sigma, mu, unused_percentage
