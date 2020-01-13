@@ -142,3 +142,16 @@ compare("./analysis_results/simpleDSSPv2_all.txt",
 )
 
 ```
+
+# Use program on random proteins
+To determine the CF parameters on randomly selected proteins, the above steps can be repeated with one sligt alteration. A list of randomly chosen proteins is used rather than a list based on a search key.
+To create a list of (50) random proteins run:
+```
+python2 create_random_pdbs.py "./preprocess_results/simpleDSSPv2_all.txt" 50
+```
+```
+protGroup = "random50"
+newIDlist = "pdbs/pdbs_{}.txt".format(protGroup)
+changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup))
+```
+Now continue the steps as normal from "Train on entries and make scores" onward.
