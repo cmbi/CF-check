@@ -3,7 +3,7 @@ The Chou Fasman check is made to determine preference parameters of amino acid p
 
 
 # Use this program:
-To use this program, we will first create the Chou Fasman (FC) parameters based on all the proteins. We will then do so for specific proteins and compare the results.
+To use this program, we will first create the Chou Fasman (CF) parameters based on all the proteins. We will then do so for specific proteins and compare the results.
 
 ## create folders
 For this example we will create some folders to organise the data
@@ -15,12 +15,13 @@ mkdir preprocess_results countresults pdbs analysis_results
 Programs and scripts are develloped in ```Python 2.7.17```
 
 Required packages include:
-`
+```
 pandas
 tqdm
 numpy
 matlplotlib
 scipy
+```
 
 ## get needed data
 First gather the needed data (see readme in the data folder). These are PDBFINDER and the non-redundant proteins list.
