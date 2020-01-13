@@ -1,5 +1,6 @@
 # About this program
-The Chou Fasman check is made to determine preference parameters of amino acid pairs for secondary structures. This is incorporated in the paper 
+The Chou Fasman check is made to determine preference parameters of amino acid pairs for secondary structures. This is incorporated in the paper "The future of protein secondary structure prediction was invented
+by Oleg Ptitsyn"
 
 
 # Use this program:
