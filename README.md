@@ -6,7 +6,7 @@ by Oleg Ptitsyn"
 To use this program, we will first create the Chou Fasman (CF) parameters based on all the proteins. We will then do so for specific proteins and compare the results.
 _`runexample.py` contains the code given here in a script_
 
-## create folders
+## Create folders
 For this example we will create some folders to organise the data
 ```
 mkdir preprocess_results countresults pdbs analysis_results
@@ -24,10 +24,10 @@ matlplotlib
 scipy
 ```
 
-## get needed data
+## Get needed data
 First gather the needed data (see readme in the data folder). These are PDBFINDER and the non-redundant proteins list.
 
-## preprocess the PDBfinder to needed entries
+## Preprocess the PDBfinder to needed entries
 The pdbfinder contains much irrelevant information for our purpose. We will only retain the relavant information. All proteins under the size of 50 or not present in the non-redundant list (wanted.txt) are also filtered out by default.
 
 Example with simplifying the secondary structures:
@@ -74,7 +74,8 @@ s.saveScores("analysis_results/simpleDSSPv2_all.txt")
 We will now repeat the creating of CF parameters but trained on specific proteins.
 
 ### Get proteins descriptions
-**only do this if you want to create a new descriptions file, otherwise use the one given (should be the same)**
+**Note: only do this if you want to create a new descriptions file, otherwise use the one given (should be the same)**
+
 To train on specific proteins, we will create a file to link protein IDs to their description. This will create the `description.txt` file (present by default).
 
 _note: it is assumed all proteins are in ```analysis_results/simpleDSSPv2_all.txt```_
@@ -96,7 +97,7 @@ newIDlist = "pdbs/pdbs_{}.txt".format(protGroup)
 
 changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup))
 ```
-### see how the selected group is divided over the all-protein trained data
+### See how the selected group is divided over the all-protein trained data
 Having the Ids of the protein group, it will be interesting to compare the distribution of these proteins to the distribution of all proteins, trained on all proteins
 
 ```
