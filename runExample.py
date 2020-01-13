@@ -7,7 +7,7 @@ from compare import compare
 from linking import link2Desc
 
 
-####
+####s
 ## codeblock 1
 ####
 preproc = ppc(outputFileName = 'preprocess_results/simpleDSSPv2_all', debugFilename='preprocess_results/debug', DatabaseName = "data/PDBfinder2.txt",  changeLetters = True, wantedFile = "data/wanted.txt")
@@ -30,7 +30,7 @@ s.makeHistogram()
 s.saveScores("analysis_results/simpleDSSPv2_all.txt")
 
 ####
-## codeblock 4
+## codeblock 4 + 5
 ####
 protGroup = "hemoglobin"
 createPdbs(protGroup)
@@ -38,8 +38,10 @@ newIDlist = "pdbs/pdbs_{}.txt".format(protGroup)
 
 changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup))
 
+s.makeHistogram(highligh_IdsFile = newIDlist)
+
 ####
-## codeblock 5 + 6
+## codeblock 6 + 7
 ####
 
 c = countClass(N, 
@@ -58,7 +60,7 @@ s.saveScores("analysis_results/simpleDSSPv2_{}.txt".format(protGroup))
 s.makeHistogram(newIDlist)
 
 ####
-## codeblock 7 + 8
+## codeblock 8 + 9
 ####
 
 
