@@ -1,4 +1,17 @@
-# Dependency list
+# About this program
+The Chou Fasman check is made to determine preference parameters of amino acid pairs for secondary structures. This is incorporated in the paper 
+
+
+# Use this program:
+To use this program, we will first create the Chou Fasman (FC) parameters based on all the proteins. We will then do so for specific proteins and compare the results.
+
+## create folders
+For this example we will create some folders to organise the data
+```
+mkdir preprocess_results countresults pdbs analysis_results
+```
+
+## Dependency list
 Programs and scripts are develloped in ```Python 2.7.17```
 
 Required packages include:
@@ -8,17 +21,6 @@ tqdm
 numpy
 matlplotlib
 scipy
-`
-
-
-# Use this program:
-To use this program, we will first create the Chou Fastman (FC) parameters based on all the proteins. We will then do so for specific proteins and compare the results.
-
-## create folders
-For this example we will create some folders to organise the data
-```
-mkdir preprocess_results countresults pdbs analysis_results
-```
 
 ## get needed data
 First gather the needed data (see readme in the data folder). These are PDBFINDER and the non-redundant proteins list.
@@ -39,7 +41,7 @@ preproc.makeTextWithWantedInfo()
 Now we have all the non-redundant entries from the PDBfinder. Next we want to make a file with the descriptions for all the entries
 
 
-## Determine the chou-fastman parameters
+## Determine the chou-fasman parameters
 We now determine the CF parameters for all protein. 
 
 Here we will create the CF parameters for N=1, skip any non-wanted symbols (hardcoded as ['?', '-']) and include d-amino acids:
