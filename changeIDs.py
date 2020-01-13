@@ -17,9 +17,7 @@ def changeID(preProcessedFile, IDlist, newname):
 	files = open(preProcessedFile, 'r').read().split('\n')[:-1]
 	header = files[0]
 	files = files[1:]
-	print(IDlist)
 	IDs = open(IDlist, 'r').read().split('\n')[:-1]
-	print(IDs)
 	newfiles = [f for f in files if ''.join(f.split('\t')[:2]) in IDs]
 	
 	new = open(newname, 'w')
