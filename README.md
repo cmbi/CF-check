@@ -30,7 +30,7 @@ First gather the needed data (see readme in the data folder). These are PDBFINDE
 ## preprocess the PDBfinder to needed entries
 The pdbfinder contains much irrelevant information for our purpose. We will only retain the relavant information. All proteins under the size of 50 or not present in the non-redundant list (wanted.txt) are also filtered out by default.
 
-Example with N=2 and simplifying the secondary structures:
+Example with simplifying the secondary structures:
 
 ```
 from preProcessClass import preProcessClass as ppc
