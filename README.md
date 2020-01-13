@@ -44,9 +44,7 @@ Now we have all the non-redundant entries from the PDBfinder. Next we want to ma
 
 
 ## Determine the chou-fasman parameters
-We now determine the CF parameters for all protein. 
-
-Here we will create the CF parameters for N=1, skip any non-wanted symbols (hardcoded as ['?', '-']) and include d-amino acids:
+Here we will create the CF parameters for N=2, skip any non-wanted symbols (hardcoded as ['?', '-']) and include d-amino acids:
 
 
 ```
