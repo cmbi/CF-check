@@ -98,6 +98,13 @@ newIDlist = "pdbs/pdbs_{}.txt".format(protGroup)
 
 changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup))
 ```
+### see how the selected group is divided over the all-protein trained data
+Having the Ids of the protein group, it will be interesting to compare the distribution of these proteins to the distribution of all proteins, trained on all proteins
+
+```
+s.makeHistogram(highligh_IdsFile = newIDlist)
+```
+
 
 ### Train on entries and make scores
 First we train on the entries with the countclass:
