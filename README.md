@@ -1,5 +1,5 @@
 # Dependency list
-all is made in ```Python 2.7.17```
+Programs and scripts are develloped in ```Python 2.7.17```
 
 Required packages include:
 `
