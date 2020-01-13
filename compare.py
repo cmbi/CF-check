@@ -70,7 +70,6 @@ def compare(allp, specific, IDlist = None):
 
 	if 1:
 		#[plt.plot(h2[i], h1[i], 'ro')for i in range(len(group)) if 'ubiquitin'.lower() in ''.join(group[i]).lower()]
-		[plt.plot(h2[i], h1[i], 'ko', ms=3.8)for i in range(len(group)) if 'hemoglobin' in ''.join(group[i]).lower()]
 		
 		if IDlist is None:	
 			[plt.plot(h2[i], h1[i], 'bo', ms=3.8)for i in range(len(group)) if name.lower() in ''.join(group[i]).lower()]
