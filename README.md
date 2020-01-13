@@ -2,9 +2,9 @@
 The Chou Fasman check is made to determine preference parameters of amino acid pairs for secondary structures. This is incorporated in the paper "The future of protein secondary structure prediction was invented
 by Oleg Ptitsyn"
 
-
 # Use this program:
 To use this program, we will first create the Chou Fasman (CF) parameters based on all the proteins. We will then do so for specific proteins and compare the results.
+_`runexample.py` contains the code given here in a script_
 
 ## create folders
 For this example we will create some folders to organise the data
