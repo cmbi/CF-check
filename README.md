@@ -158,5 +158,8 @@ python2 create_random_pdbs.py "./preprocess_results/simpleDSSPv2_all.txt" 50
 protGroup = "random50"
 newIDlist = "pdbs/pdbs_{}.txt".format(protGroup)
 changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup))
+
+s.makeHistogram(highligh_IdsFile = newIDlist)
 ```
 Now continue the steps as normal from "Train on entries and make scores" onward.
+
