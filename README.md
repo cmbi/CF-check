@@ -22,6 +22,7 @@ tqdm
 numpy
 matlplotlib
 scipy
+seaborn
 ```
 
 ## Get needed data
@@ -46,7 +47,6 @@ Now we have all the non-redundant entries from the PDBfinder. Next we want to ma
 ## Determine the chou-fasman parameters
 Here we will create the CF parameters for N=2, skip any non-wanted symbols (hardcoded as ['?', '-']) and include d-amino acids:
 
-
 ```
 from countClass import countClass
 N=2
@@ -65,7 +65,7 @@ from scoreClass import scoreClass
 
 s = scoreClass(N,scoreDict,"./preprocess_results/simpleDSSPv2_all.txt","./analysis_results/simpleDSSPv2.txt",removeDAA= False)
 
-s.makeHistogram()
+s.makeDistribution()
 s.saveScores("analysis_results/simpleDSSPv2_all.txt")
 ```
 
@@ -101,7 +101,7 @@ changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_r
 Having the Ids of the protein group, it will be interesting to compare the distribution of these proteins to the distribution of all proteins, trained on all proteins
 
 ```
-s.makeHistogram(highligh_IdsFile = newIDlist)
+s.makeDistribution(highligh_IdsFile = newIDlist)
 ```
 
 
@@ -113,7 +113,7 @@ c = countClass(N,
 	"./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup), 
 	"countresults/simpleDSSPv2_{}.txt".format(protGroup,
 	skipSymbols = True))
-	expectedVals, observedVals, scoreMatrix, scoreDict = c.createPrefParams() 
+expectedVals, observedVals, scoreMatrix, scoreDict = c.createPrefParams() 
 
 ```
 
@@ -125,7 +125,7 @@ s = scoreClass(N, scoreDict, "./preprocess_results/simpleDSSPv2_all.txt",
 	removeDAA= True
 )
 s.saveScores("analysis_results/simpleDSSPv2_{}.txt".format(protGroup))
-s.makeHistogram(newIDlist)
+s.makeDistribution(newIDlist)
 ```
 
 ### Analyze results
@@ -150,7 +150,7 @@ compare("./analysis_results/simpleDSSPv2_all.txt",
 ```
 
 # Use program on random proteins
-To determine the CF parameters on randomly selected proteins, the above steps can be repeated with one sligt alteration. A list of randomly chosen proteins is used rather than a list based on a search key.
+To determine the CF parameters on randomly selected proteins, the above steps can be repeated with one slight alteration. A list of randomly chosen proteins is used rather than a list based on a search key.
 To create a list of (50) random proteins run:
 ```
 python2 create_random_pdbs.py "./preprocess_results/simpleDSSPv2_all.txt" 50
@@ -160,7 +160,7 @@ protGroup = "random50"
 newIDlist = "pdbs/pdbs_{}.txt".format(protGroup)
 changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup))
 
-s.makeHistogram(highligh_IdsFile = newIDlist)
+s.makeDistribution(highligh_IdsFile = newIDlist)
 ```
 Now continue the steps as normal from "Train on entries and make scores" onward.
 
