@@ -38,7 +38,7 @@ newIDlist = "pdbs/pdbs_{}.txt".format(protGroup)
 
 changeID("./preprocess_results/simpleDSSPv2_all.txt", newIDlist, "./preprocess_results/simpleDSSPv2_{}.txt".format(protGroup))
 
-s.makeHistogram(highligh_IdsFile = newIDlist)
+s.makeDistribution(highligh_IdsFile = newIDlist)
 
 ####
 ## codeblock 6 + 7
@@ -57,7 +57,7 @@ s = scoreClass(N, scoreDict, "./preprocess_results/simpleDSSPv2_all.txt",
 
 
 s.saveScores("analysis_results/simpleDSSPv2_{}.txt".format(protGroup))
-s.makeHistogram(newIDlist)
+s.makeDistribution(newIDlist)
 
 ####
 ## codeblock 8 + 9

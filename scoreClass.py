@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 import matplotlib.mlab as mlab
 from scipy.stats import norm
 import pickle
+import seaborn as sns
 
 
 class scoreClass:
@@ -102,23 +103,83 @@ class scoreClass:
         bin2use = len(entryScores) / 10
         print("TOTAL PROTEINS: ", len(entryScores))
 
-
-        weights = np.ones_like(entryScores) / float(len(entryScores))
-        plt.hist(entryScores, bin2use, density=True, color='y', weights=weights)
-        mu, sigma = norm.fit(entryScores)
-
-        # plot hemoglobin on its own
         if not highligh_IdsFile is None:
             highligh_Ids = open(highligh_IdsFile, 'r').read().split('\n')[:-1]
-
             specificScores = [entryScores[i] for i in range(len(entryScores)) if entryNames[i] in highligh_Ids]
+
+            median = np.median(specificScores)
+            specificScores -= median
+        else:
+            median = np.median(entryScores)
+        weights = np.ones_like(entryScores) / float(len(entryScores))
+        entryScores-= median
+        plt.hist(entryScores, bin2use, density=True, color='y')#, weights=weights)
+        mu, sigma = norm.fit(entryScores)
+
+        if not highligh_IdsFile is None:
             weights = np.ones_like(specificScores) / float(len(specificScores))
             bin2use = len(specificScores) / 10
+            plt.hist(specificScores, bin2use, density=True, lw=1, edgecolor='k', alpha = 0.4, color='b')#, weights=weights)
 
-            plt.hist(specificScores, bin2use, density=True, lw=1, edgecolor='k', alpha = 0.4, color='b', weights=weights)
+
+        # plot hemoglobin on its own
 
         fig = plt.gcf()
         plt.grid(False)
+        fig.savefig('Histogram.png', dpi=300)
+        plt.show()
+
+        str(raw_input('Press enter key to continue'))
+        plt.close()
+
+        return entryNames, entryScores, entryHEADS, sigma, mu, unused_percentage
+
+    def makeDistribution(self, highligh_IdsFile = None):
+        """ Makes a histogram of the calculated scores for each chain and draws a normal distribution.
+        :return: Lists of the: entry names, -scores, -headers and found strange percentage. Values for sigma and mu.
+        """
+
+        entryNames, entryScores, entryHEADS, unused_percentage = self.calcScores()
+
+        print("TOTAL PROTEINS: ", len(entryScores))
+
+        if not highligh_IdsFile is None:
+            highligh_Ids = open(highligh_IdsFile, 'r').read().split('\n')[:-1]
+            specificScores = [entryScores[i] for i in range(len(entryScores)) if entryNames[i] in highligh_Ids]
+
+            median = np.median(specificScores)
+            median = np.median(entryScores)
+            specificScores -= median
+        else:
+            median = np.median(entryScores)
+        weights = np.ones_like(entryScores) / float(len(entryScores))
+        entryScores-= median
+        bin2use = len(entryScores) / 10
+
+        sns.distplot(np.array(entryScores), hist=True, kde=True,
+                     bins=bin2use, color = 'y', kde_kws={'shade': True, 'linewidth': 2},
+                     hist_kws={"alpha": 0.3},
+                     label="allProt")
+
+        mu, sigma = norm.fit(entryScores)
+
+        if not highligh_IdsFile is None:
+            weights = np.ones_like(specificScores) / float(len(specificScores))
+            bin2use = len(specificScores) / 10
+            sns.distplot(np.array(specificScores), hist=True, kde=True,
+                         bins=bin2use, kde_kws={'shade': True, 'linewidth': 2},
+                         hist_kws = {"alpha": 0.3},
+                         label="trainedProt")
+
+        # plot hemoglobin on its own
+
+        fig = plt.gcf()
+        plt.xlim([-0.45, 0.45])
+        plt.ylim([0, 12])
+        plt.grid(False)
+        plt.xlabel("mean-centered scores")
+        plt.ylabel("normalized frequency")
+        plt.legend()
         fig.savefig('Histogram.png', dpi=300)
         plt.show()
 
